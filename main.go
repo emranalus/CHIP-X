@@ -181,7 +181,7 @@ func LoadFont()  {
 func init()  {
 
     // Load programme into device memory
-    file, err := os.Open("ROMs/1-chip8-logo.ch8")
+    file, err := os.Open("1-chip8-logo.ch8")
     if err != nil {
         fmt.Println(err)
     }
