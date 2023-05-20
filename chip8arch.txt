@@ -1,0 +1,37 @@
+Atari CHIP-8 Architecture Cheatsheat
+======================================
+
+Memory 
+--------
+CHIP-8 is a 4K 8-bit system which means there was 4096 memory locations and all of them were 8-bit long.
+CHIP-8 interpreter itself occupies the first 512 bytes so programs start from memory address 512(0x200) and goes above that but never below.
+Also the uppermost 256 bytes (0xF00-0xFFF) for reserve for display refresh and the 96 bytes below that (0xEA0-0xEFF) were reserved for the call stack etc.
+
+Registers
+-----------
+CHIP-8 has 16 8-bit registers named V0 to VF.
+VF register is also used as carry flag.
+I is reserved as address register and it's 12-bit wide, used for opcodes that involve memory operations.
+
+Stack
+-------
+The stack only used to store return addresses when subroutines are called.
+The original RCA 1802 version allocated 48 bytes for up to 12 levels of nesting modern implementations usually have more.
+
+Timers
+--------
+CHIP-8 has two timers. They both count down at 60 hertz, until they reach 0.
+
+Delay timer: This timer is intended to be used for timing the events of games. Its value can be set and read.
+Sound timer: This timer is used for sound effects. When its value is nonzero, a beeping sound is made.
+
+Opcodes
+---------
+CHIP-8 has 35 opcodes, which are all two bytes long and stored big-endian. 
+
+Graphics
+----------
+CHIP-8 has one instruction that draws sprite to the screen. 
+Drawing is done in XOR mode and if a pixel is turned off as a result of drawing, the VF register is set, this is used for collision detection.
+The graphics of the CHIP-8 are black and white and the screen has a total of 2048 pixels (64 x 32).
+
